@@ -7,15 +7,15 @@ terraform {
   }
  backend "s3" {
    encrypt = true    
-   bucket   = "name-of-your-bucket-up-to-you"
-   key      = "name-of-folder-you-want/terraform.tfstate"
-   region   = "your-aws-region"
+   bucket   = "s3-function-bucket"
+   key      = "s3-function-folder/terraform.tfstate"
+   region   = "us-east-1"
  }
 }
 
 # Creating AWS Provider
 provider "aws" {
-    region = "your-aws-region"
+    region = "us-east-1"
     access_key = var.terraform_aws_access_key
     secret_key = var.terraform_aws_secret_key
 }
