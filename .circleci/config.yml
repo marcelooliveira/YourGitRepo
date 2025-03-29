@@ -30,7 +30,7 @@ jobs:
             npm ci
             npm run build
       - persist_to_workspace:
-          root: .
+          root: /tmp/dir
           paths:
             - src/lambda-functions/deployment
 
