@@ -30,9 +30,9 @@ jobs:
             npm ci
             npm run build
       - persist_to_workspace:
-          root: /tmp/dir
+          root: ~/
           paths:
-            - src/lambda-functions/deployment
+            - . #src/lambda-functions/deployment
 
   plan_infrastructure:
     executor: terraform/default
