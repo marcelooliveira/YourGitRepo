@@ -44,7 +44,7 @@ jobs:
     steps:
       - attach_workspace:
           at: "./"
-      - run: cat ~/.aws/credentials
+      - run: echo $AWS_ACCESS_KEY_ID<< parameters.env_suffix >>
       - run: echo "Executing terraform init"
       - terraform/init:
           path: infrastructure/environments/<< parameters.env >>
