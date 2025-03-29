@@ -27,7 +27,8 @@ resource "aws_iam_role_policy_attachment" "lambda_role_attachment" {
 # Creating zip file
 data "archive_file" "application-code" {
   type        = "zip"
-  source_dir  = "${path.module}/../../../src/lambda-functions/deployment"
+  # source_dir  = "${path.module}/../../../src/lambda-functions/deployment"
+  source_dir  = "${path.module}/../../../src/lambda-functions"
   output_path = "lambda.zip"
 }
 
