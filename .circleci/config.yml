@@ -8,7 +8,7 @@ jobs:
 
   project_checkout:
     machine:
-      image: ubuntu-2004:202201-02
+      image: ubuntu-2204:edge
       docker_layer_caching: true
     steps:
       - checkout
