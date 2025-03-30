@@ -47,7 +47,7 @@ jobs:
       - run: echo "Executing terraform destroy"
       - terraform/destroy:
           path: infrastructure/environments/<< parameters.env >>
-          var: |
+          backend_config: |
             access_key=$AWS_ACCESS_KEY_ID<< parameters.env_suffix >>,
             secret_key=$AWS_SECRET_ACCESS_KEY<< parameters.env_suffix >>
       - run: echo "Executing terraform init"      
