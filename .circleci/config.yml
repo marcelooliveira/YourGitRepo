@@ -45,9 +45,8 @@ jobs:
       - attach_workspace:
           at: "./"
       - run: echo "Executing terraform destroy"
-      - run:
-          name: Destroy terraform
-          command: terraform destroy
+      - terraform/destroy:
+          path: infrastructure/environments/<< parameters.env >>
       - run: echo "Executing terraform init"      
       - terraform/init:
           path: infrastructure/environments/<< parameters.env >>
