@@ -1,7 +1,6 @@
 # Creating "ts_lambda_role" role
 resource "aws_iam_role" "ts_lambda_role" {
-  # name = "lambda-functions-role"
-  name_prefix = "lambda-functions-role"
+  name = "lambda-functions-role"
   assume_role_policy = jsonencode(
     {
       Version = "2012-10-17"
@@ -21,6 +20,7 @@ resource "aws_iam_role" "ts_lambda_role" {
 
   lifecycle {
     ignore_changes = all
+    create_before_destroy = true
   }
 }
 
