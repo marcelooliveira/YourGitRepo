@@ -9,9 +9,3 @@ variable "terraform_aws_secret_key" {
   description = "AWS terraform secret key"
   sensitive   = true
 }
-
-variable "env_suffix" {
-  type        = string
-  description = "env_suffix"
-  sensitive   = true
-}
