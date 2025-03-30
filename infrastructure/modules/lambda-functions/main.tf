@@ -17,6 +17,10 @@ resource "aws_iam_role" "ts_lambda_role" {
         },
       ]
   })
+
+  lifecycle {
+    ignore_changes = all
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_role_attachment" {
