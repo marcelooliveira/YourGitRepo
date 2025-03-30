@@ -51,11 +51,11 @@ jobs:
             access_key=$AWS_ACCESS_KEY_ID<< parameters.env_suffix >>,
             secret_key=$AWS_SECRET_ACCESS_KEY<< parameters.env_suffix >>
       - run: echo "Executing terraform plan"
-      - run:
-          name: Import IAM Role
-          command: |
-            cd infrastructure/environments/<< parameters.env >>
-            terraform import aws_iam_role.ts_lambda_role lambda-functions-role
+#      - run:
+#          name: Import IAM Role
+#          command: |
+#            cd infrastructure/environments/<< parameters.env >>
+#            terraform import aws_iam_role.ts_lambda_role lambda-functions-role
       - terraform/plan:
           path: infrastructure/environments/<< parameters.env >>
           var: |
