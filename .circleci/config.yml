@@ -53,7 +53,9 @@ jobs:
       - run: echo "Executing terraform plan"
       - run:
           name: Import IAM Role
-          command: terraform import aws_iam_role.ts_lambda_role lambda-functions-role
+          command: |
+            cd infrastructure
+            terraform import aws_iam_role.ts_lambda_role lambda-functions-role
       - terraform/plan:
           path: infrastructure/environments/<< parameters.env >>
           var: |
