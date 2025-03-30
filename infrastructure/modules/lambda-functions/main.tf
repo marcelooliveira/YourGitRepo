@@ -1,5 +1,6 @@
 # Creating "ts_lambda_role" role
 resource "aws_iam_role" "ts_lambda_role" {
+  # name = "lambda-functions-role"
   name_prefix = "lambda-functions-role"
   assume_role_policy = jsonencode(
     {
@@ -46,4 +47,8 @@ resource "aws_lambda_function" "ts_lambda" {
   runtime           = "nodejs20.x"
   memory_size       = 1024
   timeout           = 300
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
