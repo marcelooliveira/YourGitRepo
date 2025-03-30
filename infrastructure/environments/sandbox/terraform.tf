@@ -5,12 +5,13 @@ terraform {
       version = "~> 5.0"
     }
   }
-# backend "s3" {
-#   encrypt = true    
-#   bucket   = "s3-function-bucket-2"
-#   key      = "s3-function-folder/terraform.tfstate"
-#   region   = "us-east-1"
-# }
+
+  backend "s3" {
+    bucket         = "my-terraform-state-bucket"
+    key            = "terraform/state.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-lock"
+  }
 }
 
 # Creating AWS Provider
