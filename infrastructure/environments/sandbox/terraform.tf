@@ -15,9 +15,9 @@ terraform {
 
 # Creating AWS Provider
 provider "aws" {
-    region = "us-east-1"
-    access_key = var.terraform_aws_access_key
-    secret_key = var.terraform_aws_secret_key
+  region = "us-east-1"
+  access_key = var.terraform_aws_access_key
+  secret_key = var.terraform_aws_secret_key
 }
 
 #Call module lambda Terraform
