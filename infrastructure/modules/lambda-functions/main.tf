@@ -1,11 +1,3 @@
-# Creating AWS Provider
-provider "aws" {
-  region = "us-east-1"
-  access_key = var.terraform_aws_access_key
-  secret_key = var.terraform_aws_secret_key
-  # shared_credentials_files = ["~/.aws/credentials"]
-}
-
 # Creating "ts_lambda_role" role
 resource "aws_iam_role" "ts_lambda_role" {
   name = "lambda-functions-role"
