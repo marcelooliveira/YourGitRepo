@@ -50,6 +50,9 @@ jobs:
           backend_config: |
             access_key=$AWS_ACCESS_KEY_ID<< parameters.env_suffix >>,
             secret_key=$AWS_SECRET_ACCESS_KEY<< parameters.env_suffix >>
+          var: |
+            terraform_aws_access_key=$AWS_ACCESS_KEY_ID<< parameters.env_suffix >>
+            terraform_aws_secret_key=$AWS_SECRET_ACCESS_KEY<< parameters.env_suffix >>
       - run: echo "Executing terraform init"      
       - terraform/init:
           path: infrastructure/environments/<< parameters.env >>
