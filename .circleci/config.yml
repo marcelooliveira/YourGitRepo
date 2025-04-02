@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   terraform: circleci/terraform@3.6.0
   aws-cli: circleci/aws-cli@4.1.2
-  sam: circleci/aws-sam-serverless@5.0
 
 jobs:
 
@@ -13,9 +12,6 @@ jobs:
       docker_layer_caching: true
     steps:
       - checkout
-      - aws-cli/setup
-      - sam/install
-      - run: sam build
       - persist_to_workspace:
           root: .
           paths:
@@ -48,15 +44,6 @@ jobs:
     steps:
       - attach_workspace:
           at: "./"
-#      - run: echo "Executing terraform destroy"
-#      - terraform/destroy:
-#          path: infrastructure/environments/<< parameters.env >>
-#          backend_config: |
-#            access_key=$AWS_ACCESS_KEY_ID<< parameters.env_suffix >>,
-#            secret_key=$AWS_SECRET_ACCESS_KEY<< parameters.env_suffix >>
-#          var: |
-#            terraform_aws_access_key=$AWS_ACCESS_KEY_ID<< parameters.env_suffix >>
-#            terraform_aws_secret_key=$AWS_SECRET_ACCESS_KEY<< parameters.env_suffix >>
       - run: echo "Executing terraform init"      
       - terraform/init:
           path: infrastructure/environments/<< parameters.env >>
@@ -84,6 +71,11 @@ jobs:
     steps:
       - attach_workspace:
           at: "./"
+      - run:
+          name: Install Node.js dependencies in Lambda package
+          command: |
+            cd src/lambda-functions
+            npm ci        
       - run: echo "Executing terraform apply"
       - terraform/apply:
           path: infrastructure/environments/<< parameters.env >>
