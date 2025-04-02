@@ -12,10 +12,22 @@ jobs:
       docker_layer_caching: true
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          working_directory: /src/lambda
+          command: npm ci
+      - run:
+          name: Verify node_modules exists
+          working_directory: /src/lambda
+          command: ls -l node_modules
       - persist_to_workspace:
           root: .
           paths:
-            - .
+            - src/lambda      
+#      - persist_to_workspace:
+#          root: .
+#          paths:
+#            - .
 
   build_lambdas:
     docker:
@@ -71,11 +83,6 @@ jobs:
     steps:
       - attach_workspace:
           at: "./"
-      - run:
-          name: Install Node.js dependencies in Lambda package
-          command: |
-            cd src/lambda-functions
-            npm ci        
       - run: echo "Executing terraform apply"
       - terraform/apply:
           path: infrastructure/environments/<< parameters.env >>
