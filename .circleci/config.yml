@@ -83,6 +83,11 @@ jobs:
           var: |
             terraform_aws_access_key=$AWS_ACCESS_KEY_ID<< parameters.env_suffix >>
             terraform_aws_secret_key=$AWS_SECRET_ACCESS_KEY<< parameters.env_suffix >>
+      - run:
+          command: |
+            cd src/lambda-functions
+            echo "ls -l node_modules"
+            ls -l node_modules
       - persist_to_workspace:
           paths:
             - "."
