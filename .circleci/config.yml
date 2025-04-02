@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   terraform: circleci/terraform@3.6.0
   aws-cli: circleci/aws-cli@4.1.2
+  sam: circleci/aws-sam-serverless@5.0
 
 jobs:
 
@@ -12,6 +13,9 @@ jobs:
       docker_layer_caching: true
     steps:
       - checkout
+      - aws-cli/setup
+      - sam/install
+      - run: sam build
       - persist_to_workspace:
           root: .
           paths:
